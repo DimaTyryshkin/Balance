@@ -4,10 +4,13 @@ namespace Balance.Models
 {
     public class Operation
     {
+        public static readonly string incomeTypeAlias = "Доход";
+        public static readonly string expensesTypeAlias = "Расход";
+
         public static readonly string[] operationTypes = new string[]
         {
-            "Доход",
-            "Расход"
+            incomeTypeAlias,
+            expensesTypeAlias
         };
 
         public static readonly string[] incomeCategoryes = new string[]
@@ -27,13 +30,20 @@ namespace Balance.Models
 
         public static string[] GetCategoryesByType(string operationType)
         {
-            if (operationType == operationTypes[0])
+            if (operationType == incomeTypeAlias)
                 return incomeCategoryes;
 
-            if (operationType == operationTypes[1]) 
+            if (operationType == expensesTypeAlias)
                 return expensesCategoryes;
 
             throw new ArgumentException("Нет категорий для этого типа операции", operationType);
         }
-    } 
+
+
+        public DateTime dateTime { get; set; } 
+        public string type { get; set; }
+        public string category { get; set; }
+        public int summ { get; set; }
+        public string description { get; set; }
+    }
 }

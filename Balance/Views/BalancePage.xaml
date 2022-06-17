@@ -9,6 +9,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock FontSize="30" Text="Баланс"/>
+        <StackPanel>
+            <TextBlock FontSize="30" Text="Баланс:"/>
+            <TextBlock FontSize="20" x:Name="balanceText" />
+        </StackPanel>
     </Grid>
 </Page>

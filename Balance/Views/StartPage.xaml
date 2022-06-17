@@ -11,6 +11,8 @@
     <Grid>
         <NavigationView x:Name="menu" 
                         IsSettingsVisible="False" 
+                        IsPaneToggleButtonVisible="False"
+                        IsBackButtonVisible="Collapsed"
                         Loaded="menu_Loaded" 
                         SelectionChanged="menu_SelectionChanged"
                         PaneDisplayMode="Left"

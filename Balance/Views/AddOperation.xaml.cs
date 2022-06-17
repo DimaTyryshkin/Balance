@@ -59,6 +59,8 @@ namespace Balance.Views
 
             if (isInputOk)
             {
+                // Для простоты будем считать только целые числа.
+                // На сколько я знаю, в серьезных программах банковских числа с правающей точкой не используются. 
                 int summInt = int.Parse(Summ);
 
                 Debug.WriteLine($"--- SAVE ---");
@@ -66,7 +68,16 @@ namespace Balance.Views
                 Debug.WriteLine($"OperationType={OperationType}");
                 Debug.WriteLine($"OperationCategory={OperationCategory}");
                 Debug.WriteLine($"Description={Description}");
-                     
+
+                var data = DataBaseContext.Inst;
+                data.Operations.Add(new Operation
+                {
+                    dateTime = DateTime.Now,
+                    type = operationType,
+                    category = OperationCategory,
+                    summ = summInt,
+                    description = Description,
+                });
             }
             else
             {

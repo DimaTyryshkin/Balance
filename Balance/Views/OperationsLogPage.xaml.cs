@@ -13,18 +13,19 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
-
+using Balance.Models;
+ 
 namespace Balance.Views
-{
-    /// <summary>
-    /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
-    /// </summary>
+{ 
     public sealed partial class OperationsLogPage : Page
     {
+        public DataBaseContext Data { get; set; }
+
         public OperationsLogPage()
         {
             this.InitializeComponent();
+            Data = DataBaseContext.Inst;
+            dataGrid.ItemsSource = Data.Operations;
         }
     }
 }
