@@ -1,31 +1,99 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Collections.Generic; 
+using System.Linq; 
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Controls; 
 
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
+using Balance.Models;
+using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace Balance.Views
-{
-    /// <summary>
-    /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
-    /// </summary>
+{  
     public sealed partial class AddOperation : Page
     {
-        public AddOperation()
-        {
-            this.InitializeComponent();
+       
+        string operationType;
+        string[] operationCategoryes;
 
+        public string Summ {get; set; }
+        public string Description {get; set; }
+        public List<string> availableTypes;
+        public ObservableCollection<string> availableCategoryes;
+
+        public string OperationType
+        {
+            get => operationType;
+            set
+            {
+                if (value != null && value != operationType)
+                {
+                    operationType = value;
+                    Debug.WriteLine($"OperationType={value}");
+
+                    operationCategoryes = Operation.GetCategoryesByType(value);
+                    categoryComboBox.ItemsSource = operationCategoryes;
+                    categoryComboBox.SelectedIndex = 0;
+                }
+            }
+        }
+
+        public string OperationCategory
+        {
+            get;
+            set;
+        }
+
+        public AddOperation()
+        { 
+            this.InitializeComponent();
+            typeComboBox.ItemsSource = Operation.operationTypes;
+            
+            Reset();
+            categoryComboBox.SelectedItem = operationCategoryes[0];
+        }
+
+        private async void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool isInputOk = Summ.Length > 0 && Summ.All(char.IsDigit);
+
+            if (isInputOk)
+            {
+                int summInt = int.Parse(Summ);
+
+                Debug.WriteLine($"--- SAVE ---");
+                Debug.WriteLine($"summInt={summInt}");
+                Debug.WriteLine($"OperationType={OperationType}");
+                Debug.WriteLine($"OperationCategory={OperationCategory}");
+                Debug.WriteLine($"Description={Description}");
+                     
+            }
+            else
+            {
+                ContentDialog deleteFileDialog = new ContentDialog()
+                {
+
+                    Title = "Плохие данные",
+                    Content = "Введите сумму операции, в виде цифр",
+                    PrimaryButtonText = "ОК"
+                };
+
+                ContentDialogResult result = await deleteFileDialog.ShowAsync();
+            }
+        }  
+        
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            Reset();
+        } 
+
+        void Reset()
+        {
+            Summ = "0";
+            Description = null;
+            OperationType = Operation.operationTypes[0];
+            
+            Bindings.Update();
         }
     }
 }

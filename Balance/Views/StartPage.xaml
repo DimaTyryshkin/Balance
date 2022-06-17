@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="Balance.Views.StartPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Balance.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <NavigationView x:Name="menu" 
+                        IsSettingsVisible="False" 
+                        Loaded="menu_Loaded" 
+                        SelectionChanged="menu_SelectionChanged"
+                        PaneDisplayMode="Left"
+                        CompactModeThresholdWidth="200"
+                        ExpandedModeThresholdWidth="200">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Баланс" Tag="balance"/>
+                <NavigationViewItem Content="Добавить операцию"  Tag="addOperation"/>
+                <NavigationViewItem Content="История операций" Tag="operationsLog"/>
+            </NavigationView.MenuItems>
+
+            <Frame x:Name="bodyFrame"/>
+        </NavigationView>
+    </Grid>
+</Page>
