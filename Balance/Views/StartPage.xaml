@@ -10,19 +10,20 @@
 
     <Grid>
         <NavigationView x:Name="menu" 
+                        
                         IsSettingsVisible="False" 
                         IsPaneToggleButtonVisible="False"
                         IsBackButtonVisible="Collapsed"
                         Loaded="menu_Loaded" 
                         SelectionChanged="menu_SelectionChanged"
                         PaneDisplayMode="Left"
-                        CompactModeThresholdWidth="200"
-                        ExpandedModeThresholdWidth="200">
+                        OpenPaneLength="200">
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Баланс" Tag="balance"/>
                 <NavigationViewItem Content="Добавить операцию"  Tag="addOperation"/>
                 <NavigationViewItem Content="История операций" Tag="operationsLog"/>
             </NavigationView.MenuItems>
+            
 
             <Frame x:Name="bodyFrame"/>
         </NavigationView>

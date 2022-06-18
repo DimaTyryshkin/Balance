@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls; 
+﻿using Balance.Models;
+using Windows.UI.Xaml.Controls; 
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -12,7 +13,10 @@ namespace Balance.Views
         public BalancePage()
         {
             this.InitializeComponent();
-            balanceText.Text = Models.DataBaseContext.Inst.CalculateActuelBalance().ToString();
+            using (SQLiteContext db = new SQLiteContext())
+            {
+                balanceText.Text = db.CalculateActuelBalance().ToString();
+            }
         }
     }
 }

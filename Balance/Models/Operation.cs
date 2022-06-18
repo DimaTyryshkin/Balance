@@ -22,9 +22,9 @@ namespace Balance.Models
 
         public static readonly string[] expensesCategoryes = new string[]
         {
-            "Развлечение",
+            "Развлечения",
             "Еда",
-            "Транспорт"
+            "Транспорт",
         };
 
 
@@ -40,10 +40,11 @@ namespace Balance.Models
         }
 
 
-        public DateTime dateTime { get; set; } 
-        public string type { get; set; }
-        public string category { get; set; }
-        public int summ { get; set; }
-        public string description { get; set; }
+        public int Id { get; set; }
+        public DateTime DateTime { get; set; } 
+        public string Type { get; set; }
+        public string Category { get; set; }
+        public int Summ { get; set; }
+        public string Description { get; set; }
     }
 }

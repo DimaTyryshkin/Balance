@@ -28,9 +28,7 @@ namespace Balance.Views
             {
                 if (value != null && value != operationType)
                 {
-                    operationType = value;
-                    Debug.WriteLine($"OperationType={value}");
-
+                    operationType = value;  
                     operationCategoryes = Operation.GetCategoryesByType(value);
                     categoryComboBox.ItemsSource = operationCategoryes;
                     categoryComboBox.SelectedIndex = 0;
@@ -62,22 +60,21 @@ namespace Balance.Views
                 // Для простоты будем считать только целые числа.
                 // На сколько я знаю, в серьезных программах банковских числа с правающей точкой не используются. 
                 int summInt = int.Parse(Summ);
-
-                Debug.WriteLine($"--- SAVE ---");
-                Debug.WriteLine($"summInt={summInt}");
-                Debug.WriteLine($"OperationType={OperationType}");
-                Debug.WriteLine($"OperationCategory={OperationCategory}");
-                Debug.WriteLine($"Description={Description}");
-
-                var data = DataBaseContext.Inst;
-                data.Operations.Add(new Operation
+                 
+                var newOperation = new Operation
                 {
-                    dateTime = DateTime.Now,
-                    type = operationType,
-                    category = OperationCategory,
-                    summ = summInt,
-                    description = Description,
-                });
+                    DateTime = DateTime.Now,
+                    Type = operationType,
+                    Category = OperationCategory,
+                    Summ = summInt,
+                    Description = Description,
+                };
+                  
+                using (SQLiteContext db = new SQLiteContext())
+                {
+                    db.Operations.Add(newOperation);
+                    db.SaveChanges();
+                }
             }
             else
             {

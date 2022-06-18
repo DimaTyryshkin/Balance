@@ -1,31 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+﻿using System.Linq; 
+using Windows.UI.Xaml.Controls; 
 
 using Balance.Models;
  
 namespace Balance.Views
 { 
     public sealed partial class OperationsLogPage : Page
-    {
-        public DataBaseContext Data { get; set; }
-
+    {  
         public OperationsLogPage()
         {
             this.InitializeComponent();
-            Data = DataBaseContext.Inst;
-            dataGrid.ItemsSource = Data.Operations;
+              
+            using (SQLiteContext db = new SQLiteContext())
+            {
+                dataGrid.ItemsSource = db.Operations.ToList(); 
+            } 
         }
     }
 }

@@ -14,38 +14,35 @@
     </Page.Resources>
     <Grid>
         <controls:DataGrid 
-                Height="600" 
                 Margin="12"
                 x:Name="dataGrid"
                 AutoGenerateColumns="False"
-                IsReadOnly="True"
-                ItemsSource="{x:Bind Data.Operations}">
-
+                IsReadOnly="True"> 
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn
                         Header="Дата"
                         Width="140" 
-                        Binding="{Binding dateTime, Converter={StaticResource converter}, ConverterParameter='yyyy/MM/dd hh:mm'}"
+                        Binding="{Binding DateTime, Converter={StaticResource converter}, ConverterParameter='yyyy/MM/dd hh:mm'}"
                         FontSize="15"/>
                 <controls:DataGridTextColumn
                         Header="Тип операции"
                         Width="140" 
-                        Binding="{Binding type}"
+                        Binding="{Binding Type}"
                         FontSize="15"/>
                 <controls:DataGridTextColumn
                         Header="Категория"
-                        Width="150" 
-                        Binding="{Binding category}"
+                        Width="250" 
+                        Binding="{Binding Category}"
                         FontSize="15"/>
                 <controls:DataGridTextColumn
                         Header="Сумма"
                         Width="100" 
-                        Binding="{Binding summ}"
+                        Binding="{Binding Summ}"
                         FontSize="15"/>
                 <controls:DataGridTextColumn
                         Header="Описание"
                         Width="*" 
-                        Binding="{Binding description}"
+                        Binding="{Binding Description}"
                         FontSize="15"/>
             </controls:DataGrid.Columns>
         </controls:DataGrid>
