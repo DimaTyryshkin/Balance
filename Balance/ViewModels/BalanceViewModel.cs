@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Balance.Models;
+using System.Globalization;
 
 namespace Balance.ViewModels
 {
@@ -13,16 +14,16 @@ namespace Balance.ViewModels
         {
             using (SQLiteContext db = new SQLiteContext())
             {
-                Balance = CalculateActualBalance(db.Operations).ToString();
+                Balance = CalculateActualBalance(db.Operations).ToString(CultureInfo.InvariantCulture);
             }
         }
 
         /// <summary>
         /// Возвращает баланс, рассчитанный на основе истории операций.
         /// </summary>
-        int CalculateActualBalance(DbSet<Operation> operations)
+        double CalculateActualBalance(DbSet<Operation> operations)
         {
-            int summ = 0;
+            double summ = 0;
             foreach (Operation operation in operations.ToList())
             {
 

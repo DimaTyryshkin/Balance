@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using Balance.Models;
 
@@ -89,9 +90,18 @@ namespace Balance.ViewModels
             Reset();
         }
 
+        /// <summary>
+        /// Возвращает true, если пользователь корректно вел сумму.
+        /// </summary>
         bool IsInputValid()
         {
-            return Summ.Length > 0 && Summ.All(char.IsDigit);
+            if (Summ.Length == 0)
+                return false;
+
+            if (double.TryParse(Summ, NumberStyles.Any, CultureInfo.InvariantCulture, out double summ))
+                return true;
+
+            return false;
         }
 
         void SaveOperation()
@@ -103,7 +113,7 @@ namespace Balance.ViewModels
             {
                 // Для простоты будем считать только целые числа.
                 // На сколько я знаю, в серьезных программах банковских числа с правающей точкой не используются. 
-                int summInt = int.Parse(Summ);
+                double summInt = double.Parse(Summ, CultureInfo.InvariantCulture);
 
                 var newOperation = new Operation
                 {
@@ -114,11 +124,16 @@ namespace Balance.ViewModels
                     Description = Description,
                 };
 
-                using (SQLiteContext db = new SQLiteContext())
-                {
-                    db.Operations.Add(newOperation);
-                    db.SaveChanges();
-                }
+                SaveOperation(newOperation);
+            }
+        }
+
+        void SaveOperation(Operation newOperation)
+        {
+            using (SQLiteContext db = new SQLiteContext())
+            {
+                db.Operations.Add(newOperation);
+                db.SaveChanges();
             }
         }
 

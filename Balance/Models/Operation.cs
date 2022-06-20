@@ -53,7 +53,7 @@ namespace Balance.Models
         public DateTime DateTime    { get; set; }
         public string   Type        { get; set; }
         public string   Category    { get; set; }
-        public int      Summ        { get; set; }
+        public double   Summ        { get; set; }
         public string   Description { get; set; }
     }
 }
