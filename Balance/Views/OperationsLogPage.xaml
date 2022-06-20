@@ -41,7 +41,7 @@
                         FontSize="15"/>
                 <controls:DataGridTextColumn
                         Header="Описание"
-                        Width="*" 
+                        Width="Auto" 
                         Binding="{Binding Description}"
                         FontSize="15"/>
             </controls:DataGrid.Columns>
