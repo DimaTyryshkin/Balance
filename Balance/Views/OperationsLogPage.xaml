@@ -14,8 +14,8 @@
     </Page.Resources>
     <Grid>
         <controls:DataGrid 
+                ItemsSource="{Binding Operations}"
                 Margin="12"
-                x:Name="dataGrid"
                 AutoGenerateColumns="False"
                 IsReadOnly="True"> 
             <controls:DataGrid.Columns>

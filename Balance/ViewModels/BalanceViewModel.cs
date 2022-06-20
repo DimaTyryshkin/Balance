@@ -7,7 +7,7 @@ namespace Balance.ViewModels
 {
     public class BalanceViewModel : ViewModel
     {
-        public string Balance { get; set; }
+        public string Balance { get; }
 
         public BalanceViewModel()
         {
