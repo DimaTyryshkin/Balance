@@ -8,10 +8,10 @@ namespace Balance.Converters
         public object Convert(object value, Type targetType, object format, string language)
         {
             var d = value as DateTime?;
-            if (!d.HasValue) 
+            if (!d.HasValue)
                 return value;
 
-            return d.Value.ToString(format.ToString());        
+            return d.Value.ToString(format.ToString());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

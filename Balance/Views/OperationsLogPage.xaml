@@ -14,36 +14,36 @@
     </Page.Resources>
     <Grid>
         <controls:DataGrid 
-                ItemsSource="{Binding Operations}"
-                Margin="12"
-                AutoGenerateColumns="False"
-                IsReadOnly="True"> 
+            ItemsSource="{Binding Operations}"
+            Margin="12"
+            AutoGenerateColumns="False"
+            IsReadOnly="True">
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn
-                        Header="Дата"
-                        Width="140" 
-                        Binding="{Binding DateTime, Converter={StaticResource converter}, ConverterParameter='yyyy/MM/dd hh:mm'}"
-                        FontSize="15"/>
+                    Header="Дата"
+                    Width="140" 
+                    Binding="{Binding DateTime, Converter={StaticResource converter}, ConverterParameter='yyyy/MM/dd hh:mm'}"
+                    FontSize="15"/>
                 <controls:DataGridTextColumn
-                        Header="Тип операции"
-                        Width="140" 
-                        Binding="{Binding Type}"
-                        FontSize="15"/>
+                    Header="Тип операции"
+                    Width="140" 
+                    Binding="{Binding Type}"
+                    FontSize="15"/>
                 <controls:DataGridTextColumn
-                        Header="Категория"
-                        Width="250" 
-                        Binding="{Binding Category}"
-                        FontSize="15"/>
+                    Header="Категория"
+                    Width="250" 
+                    Binding="{Binding Category}"
+                    FontSize="15"/>
                 <controls:DataGridTextColumn
-                        Header="Сумма"
-                        Width="100" 
-                        Binding="{Binding Summ}"
-                        FontSize="15"/>
+                    Header="Сумма"
+                    Width="100" 
+                    Binding="{Binding Summ}"
+                    FontSize="15"/>
                 <controls:DataGridTextColumn
-                        Header="Описание"
-                        Width="Auto" 
-                        Binding="{Binding Description}"
-                        FontSize="15"/>
+                    Header="Описание"
+                    Width="Auto" 
+                    Binding="{Binding Description}"
+                    FontSize="15"/>
             </controls:DataGrid.Columns>
         </controls:DataGrid>
     </Grid>

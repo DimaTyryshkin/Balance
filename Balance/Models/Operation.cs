@@ -1,5 +1,5 @@
-﻿using System; 
- 
+﻿using System;
+
 namespace Balance.Models
 {
     public class Operation
@@ -49,11 +49,11 @@ namespace Balance.Models
         }
 
 
-        public int Id { get; set; }
-        public DateTime DateTime { get; set; } 
-        public string Type { get; set; }
-        public string Category { get; set; }
-        public int Summ { get; set; }
-        public string Description { get; set; }
+        public int      Id          { get; set; }
+        public DateTime DateTime    { get; set; }
+        public string   Type        { get; set; }
+        public string   Category    { get; set; }
+        public int      Summ        { get; set; }
+        public string   Description { get; set; }
     }
 }

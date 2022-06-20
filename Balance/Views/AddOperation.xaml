@@ -39,8 +39,7 @@
             <TextBox FontSize="20" HorizontalAlignment="Stretch" Text="{Binding Description, Mode=TwoWay}"></TextBox>
         </StackPanel>
 
-        <Button Margin="10,10,10,10" FontSize="20" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Column="0" Content="Сбросить" Command="{Binding ResetCommand}"/>
-        <!--<Button Margin="10,10,10,10" FontSize="20" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Column="1" Content="Загрузить" Click="SaveButton_Click" Background="CornflowerBlue" />-->
+        <Button Margin="10,10,10,10" FontSize="20" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Column="0" Content="Сбросить"  Command="{Binding ResetCommand}"/>
         <Button Margin="10,10,10,10" FontSize="20" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Column="1" Content="Загрузить" Command="{Binding SaveCommand}" Background="CornflowerBlue" />
     </Grid>
 </Page>

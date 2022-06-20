@@ -10,9 +10,9 @@ namespace Balance.Views
             this.InitializeComponent();
         }
 
-        private void menu_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        private void Menu_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-
+            // 
             var item = args.SelectedItem as NavigationViewItem;
             System.Diagnostics.Debug.WriteLine(item.Tag.ToString());
             switch (item.Tag.ToString())
@@ -31,7 +31,7 @@ namespace Balance.Views
             } 
         }
 
-        private void menu_Loaded(object sender, RoutedEventArgs e)
+        private void Menu_Loaded(object sender, RoutedEventArgs e)
         {
             menu.SelectedItem = menu.MenuItems[0]; 
         }
