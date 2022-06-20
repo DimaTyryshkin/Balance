@@ -9,15 +9,14 @@ using System.Diagnostics;
 using System.Collections.ObjectModel;
 
 namespace Balance.Views
-{  
+{
     public sealed partial class AddOperation : Page
-    {
-       
+    { 
         string operationType;
         string[] operationCategoryes;
 
-        public string Summ {get; set; }
-        public string Description {get; set; }
+        public string Summ { get; set; }
+        public string Description { get; set; }
         public List<string> availableTypes;
         public ObservableCollection<string> availableCategoryes;
 
@@ -28,7 +27,9 @@ namespace Balance.Views
             {
                 if (value != null && value != operationType)
                 {
-                    operationType = value;  
+                    operationType = value;
+
+                    // В зависимости от типа операции, меняем возможные варианты категорий операции
                     operationCategoryes = Operation.GetCategoryesByType(value);
                     categoryComboBox.ItemsSource = operationCategoryes;
                     categoryComboBox.SelectedIndex = 0;
@@ -43,10 +44,10 @@ namespace Balance.Views
         }
 
         public AddOperation()
-        { 
+        {
             this.InitializeComponent();
             typeComboBox.ItemsSource = Operation.operationTypes;
-            
+
             Reset();
             categoryComboBox.SelectedItem = operationCategoryes[0];
         }
@@ -60,7 +61,7 @@ namespace Balance.Views
                 // Для простоты будем считать только целые числа.
                 // На сколько я знаю, в серьезных программах банковских числа с правающей точкой не используются. 
                 int summInt = int.Parse(Summ);
-                 
+
                 var newOperation = new Operation
                 {
                     DateTime = DateTime.Now,
@@ -69,7 +70,7 @@ namespace Balance.Views
                     Summ = summInt,
                     Description = Description,
                 };
-                  
+
                 using (SQLiteContext db = new SQLiteContext())
                 {
                     db.Operations.Add(newOperation);
@@ -88,19 +89,22 @@ namespace Balance.Views
 
                 ContentDialogResult result = await deleteFileDialog.ShowAsync();
             }
-        }  
-        
+        }
+
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
             Reset();
-        } 
+        }
 
+        /// <summary>
+        /// Сбрасывает вид страницы к некому начальному состоянию.
+        /// </summary>
         void Reset()
         {
             Summ = "0";
             Description = null;
             OperationType = Operation.operationTypes[0];
-            
+
             Bindings.Update();
         }
     }

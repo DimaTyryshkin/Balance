@@ -23,6 +23,9 @@ namespace Balance.Views
             }
         }
 
+        /// <summary>
+        /// Возвращает баланс, рассчитанный на основе истории операций.
+        /// </summary>
         int CalculateActualBalance(DbSet<Operation> operations)
         {
             int summ = 0;

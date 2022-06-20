@@ -7,12 +7,18 @@ namespace Balance.Models
         public static readonly string incomeTypeAlias = "Доход";
         public static readonly string expensesTypeAlias = "Расход";
 
+        /// <summary>
+        /// Доступные типы операций над балансом
+        /// </summary>
         public static readonly string[] operationTypes = new string[]
         {
             incomeTypeAlias,
             expensesTypeAlias
         };
 
+        /// <summary>
+        /// Категории операций типа 'Доход'
+        /// </summary>
         public static readonly string[] incomeCategoryes = new string[]
         {
             "Заработная плата",
@@ -20,6 +26,9 @@ namespace Balance.Models
             "Дивиденды"
         };
 
+        /// <summary>
+        /// Категории операций типа 'Расход'
+        /// </summary>
         public static readonly string[] expensesCategoryes = new string[]
         {
             "Развлечения",
