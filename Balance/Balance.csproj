@@ -122,6 +122,7 @@
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Models\SQLiteContext.cs" />
     <Compile Include="ViewModels\AddOperationViewModel.cs" />
+    <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="Views\BalancePage.xaml.cs">

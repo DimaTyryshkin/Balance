@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel Margin="10,10,10,10">
             <TextBlock FontSize="30" Text="Баланс:"/>
-            <TextBlock FontSize="20" x:Name="balanceText" />
+            <TextBlock FontSize="20" Text="{Binding Balance}" />
         </StackPanel>
     </Grid>
 </Page>
