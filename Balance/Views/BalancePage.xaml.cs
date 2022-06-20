@@ -1,22 +1,50 @@
 ﻿using Balance.Models;
-using Windows.UI.Xaml.Controls; 
-
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using Windows.UI.Xaml.Controls;
 
 namespace Balance.Views
 {
-    /// <summary>
-    /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
-    /// </summary>
     public sealed partial class BalancePage : Page
     {
         public BalancePage()
         {
             this.InitializeComponent();
+
+            Draw();
+        }
+
+        void Draw()
+        {
             using (SQLiteContext db = new SQLiteContext())
             {
-                balanceText.Text = db.CalculateActuelBalance().ToString();
+                balanceText.Text = CalculateActualBalance(db.Operations).ToString();
             }
+        }
+
+        int CalculateActualBalance(DbSet<Operation> operations)
+        {
+            int summ = 0;
+            foreach (Operation operation in operations.ToList())
+            {
+
+                if (operation.Type == Operation.incomeTypeAlias)
+                {
+                    summ += operation.Summ;
+                    continue;
+                }
+
+                if (operation.Type == Operation.expensesTypeAlias)
+                {
+                    summ -= operation.Summ;
+                    continue;
+                }
+
+                throw new Exception($"Неизвестный тип операции '{operation.Type}'");
+            }
+
+            return summ;
         }
     }
 }
